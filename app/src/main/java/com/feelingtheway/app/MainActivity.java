@@ -1,4 +1,4 @@
-package com.okm.feelingtheway;
+package com.feelingtheway.app;
 
 import android.os.Bundle;
 import android.view.ViewGroup;

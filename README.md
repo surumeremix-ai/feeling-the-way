@@ -23,9 +23,9 @@ PCなしで、スマホから GitHub Actions でビルドできる構成にな�
 
 ### パッケージ名
 
-`app/build.gradle` の `applicationId` はいま `com.okm.feelingtheway` です。
+`app/build.gradle` の `applicationId` はいま `com.feelingtheway.app` です。
 変える場合は `MainActivity.java` の1行目の `package` と、フォルダ名
-`app/src/main/java/com/okm/feelingtheway/` も同じ名前に合わせてください。
+`app/src/main/java/com/feelingtheway/app/` も同じ名前に合わせてください。
 **Play に一度出すと変更できません。**
 
 ---

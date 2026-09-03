@@ -1,11 +1,11 @@
 plugins { id 'com.android.application' }
 
 android {
-    namespace 'com.okm.feelingtheway'
+    namespace 'com.feelingtheway.app'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.okm.feelingtheway"     // ← change to your own package name
+        applicationId "com.feelingtheway.app"
         minSdk 23
         targetSdk 34
         versionCode 1
