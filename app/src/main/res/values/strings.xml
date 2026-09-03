@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FEELING THE WAY</string>
+
+    <!-- Live banner unit. -->
+    <string name="admob_banner_id">ca-app-pub-1657354520055854/9604784977</string>
+
+    <!-- TODO: create these two in AdMob and paste the ids here.
+         Until then they stay on Google's official test units, which are safe to
+         build and test with but must NOT be shipped. -->
+    <string name="admob_interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_rewarded_id">ca-app-pub-3940256099942544/5224354917</string>
+</resources>
