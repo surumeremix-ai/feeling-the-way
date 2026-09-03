@@ -2,7 +2,7 @@
     <string name="app_name">FEELING THE WAY</string>
 
     <!-- Live banner unit. -->
-    <string name="admob_banner_id">ca-app-pub-1657354520055854/9604784977</string>
+    <string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string> <!-- TEST ID: revert to ca-app-pub-1657354520055854/9604784977 before production release -->
 
     <!-- TODO: create these two in AdMob and paste the ids here.
          Until then they stay on Google's official test units, which are safe to
