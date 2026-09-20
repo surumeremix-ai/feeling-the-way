@@ -646,7 +646,7 @@ function pickPearls(sol,count,cpOf,W,rng){
 /* ---- stages ---------------------------------------------------------------
    Ten levels per stage. Each stage owns a set of mechanics, and clearing its
    last level unlocks the next one. */
-var SIZES=[[4,4],[4,5],[5,5],[5,6],[6,6],[6,7],[7,7]];
+var SIZES=[[4,4],[4,5],[5,5],[5,6],[6,6],[6,7],[7,7],[7,8],[8,8]];
 var STAGE_PLAN=[
   {num:1,zone:0,pearl:0,wall:0,vd:0, sz:[0,0,1,1,2,2,2,3,3,3]},
   {num:0,zone:1,pearl:0,wall:0,vd:0, sz:[0,1,1,2,2,2,3,3,3,3]},
@@ -655,19 +655,23 @@ var STAGE_PLAN=[
   {num:1,zone:1,pearl:0,wall:0,vd:1, sz:[3,3,3,4,4,4,4,5,5,5]},
   {num:1,zone:0,pearl:1,wall:1,vd:1, sz:[3,3,4,4,4,4,5,5,5,5]},
   {num:0,zone:1,pearl:1,wall:0,vd:1, sz:[4,4,4,4,5,5,5,5,6,6]},
-  {num:1,zone:1,pearl:1,wall:1,vd:1, sz:[4,4,5,5,5,5,6,6,6,6]}
+  {num:1,zone:1,pearl:1,wall:1,vd:1, sz:[4,4,5,5,5,5,6,6,6,6]},
+  {num:1,zone:1,pearl:0,wall:1,vd:0, sz:[4,4,5,5,5,6,6,6,7,7]},
+  {num:0,zone:1,pearl:1,wall:1,vd:1, sz:[5,5,5,6,6,6,6,7,7,7]},
+  {num:1,zone:0,pearl:1,wall:1,vd:1, sz:[5,5,6,6,6,7,7,7,7,8]},
+  {num:1,zone:1,pearl:1,wall:1,vd:1, sz:[6,6,6,7,7,7,8,8,8,8]}
 ];
 var STAGE_LEN=10;
 
 function stageOf(L){ return Math.floor((L-1)/STAGE_LEN); }
 function planFor(stage){
   if(stage<STAGE_PLAN.length) return STAGE_PLAN[stage];
-  return STAGE_PLAN[4+((stage-4)%4)];
+  return STAGE_PLAN[6+((stage-6)%6)];
 }
 
 function levelConfig(L){
   var stage=stageOf(L), idx=(L-1)%STAGE_LEN, pl=planFor(stage);
-  var extra=clamp(Math.floor((stage-7)/2),0,2);
+  var extra=clamp(Math.floor((stage-11)/2),0,2);
   var si=Math.min(SIZES.length-1, pl.sz[idx]+extra);
   var s=SIZES[si];
   var hard=Math.min(3, Math.floor(idx/3)+clamp(Math.floor(stage/5),0,1));
