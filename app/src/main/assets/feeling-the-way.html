@@ -916,7 +916,7 @@ load();
    Everything is synthesised — filtered noise for the paper sounds, a soft
    triangle for the little chimes. No audio files, nothing to ship. */
 var AC=null, MASTER=null, NBUF=null;
-var BGM={el:null, src:null, gain:null, buf:null, node:null, ready:false, wanted:false, offset:0, startedAt:0};
+var BGM={el:null, src:null, gain:null, buf:null, node:null, ready:false, wanted:false, offset:0, startedAt:0, group:'early'};
 function ac(){
   if(!AC){
     try{
@@ -957,10 +957,22 @@ function initBGM(){
 function fallbackBGM(){
   BGM.src='file'; BGM.buf=null;
   var el=document.createElement('audio');
-  el.src='feeling-the-way.mp3'; el.loop=true; el.preload='auto';
+  el.src=(BGM.group==='late') ? 'feeling-the-way-late.mp3' : 'feeling-the-way.mp3';
+  el.loop=true; el.preload='auto';
   el.volume=S.volBgm;
   BGM.el=el; BGM.ready=true;
   if(BGM.wanted) startBGM();
+}
+/* Stages 1-6 use the original track; stages 7-12 (and any cycled stage
+   beyond that) switch to the later, punchier loop. stageIdx is 0-based. */
+function setBgmForStage(stageIdx){
+  var wantGroup = stageIdx>=6 ? 'late' : 'early';
+  if(BGM.group===wantGroup) return;
+  var wasWanted=BGM.wanted;
+  stopBGM();
+  BGM.group=wantGroup;
+  BGM.ready=false; BGM.src=null; BGM.buf=null; BGM.el=null; BGM.offset=0;
+  if(wasWanted) startBGM();
 }
 function startBGM(){
   BGM.wanted=true;
@@ -1138,6 +1150,7 @@ function highestStage(){
 function startLevel(L,daily){
   isDaily=!!daily;
   P=generatePuzzle(L, daily?dailySalt():0);
+  setBgmForStage(P.stage);
   path=[P.start]; dragging=false; undoCount=0; resetCount=0; hintUsed=false;
   win=0; winT=0; winStars=0; atGoal=false;
   t0=performance.now(); tPaused=0; running=true;
